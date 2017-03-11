@@ -5,9 +5,6 @@
     <meta charset="utf-8">
     <title>&lt;hello-world&gt;</title>
 
-    <!-- Imports polyfill -->
-    <script src="../webcomponentsjs/webcomponents.min.js"></script>
-
     <!-- Imports custom element -->
     <link rel="import" href="hello-world.html">
 
@@ -16,6 +13,19 @@
 
     <!-- Runs custom element -->
     <hello-world who="Unicorn"></hello-world>
-
+    <script>
+        (function() {
+          if ('registerElement' in document
+              && 'import' in document.createElement('link')
+              && 'content' in document.createElement('template')) {
+            // platform is good!
+          } else {
+            // polyfill the platform!
+            var e = document.createElement('script');
+            e.src = '../webcomponentsjs/webcomponents.min.js';
+            document.body.appendChild(e);
+          }
+        })();
+    </script>
 </body>
 </html>
